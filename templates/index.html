@@ -1,0 +1,92 @@
+<html>
+  <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h2>Simple Demo</h2>
+
+   
+  <form action="/">
+    <label for="Age">Age:</label><br>
+    <input type="number" id="Age" name="Age" value={{Age}}><br>
+  <label for="Duration">Duration:</label><br>
+    <input type="number" id="Duration" name="Duration" value={{Duration}}><br>
+  <label for="Credit_amount">Credit_amount:</label><br>
+    <input type="number" id="Credit_amount" name="Credit_amount" value={{Credit_amount}}><br>
+
+    <label for="Sex">Choose Sex:</label>
+
+  <select name="Sex" id="Sex">
+    <option value="male">Male</option>
+    <option value="female">Female</option><br>
+    
+  </select><br/>
+  <label for="Purpose">Choose Purpose:</label>
+  <select name="Purpose" id="Purpose">
+    <option value="car">Car</option>
+    <option value="education">Education</option>
+    
+  </select>
+  <br/>
+
+  <label for="Job">Choose Job:</label>
+  <select name="Job" id="Job">
+    <option value="skilled">skilled</option>
+    <option value="highly skilled">highly skilled</option>
+    <option value="unskilled and non-resident">unskilled and non-resident</option>
+    
+  </select>
+  <br/>
+  <label for="Saving_accounts">Choose Saving_accounts:</label>
+  <select name="Saving_accounts" id="Saving_accounts">
+    <option value="little">little</option>
+    <option value="quite rich">quite rich</option>
+    <option value="rich">rich</option>
+    <option value="moderate">moderate</option>
+    
+  </select>
+  <br/>
+  <label for="Checking_account">Choose Checking_account:</label>
+  <select name="Checking_account" id="Checking_account">
+    <option value="little">little</option>
+    <option value="moderate">moderate</option>
+    <option value="rich">rich</option>
+    
+  </select>
+  <br/>
+
+
+  <label for="Housing">Choose Housing:</label>
+  <select name="Housing" id="Housing">
+    <option value="own">own</option>
+    <option value="free">free</option>
+    <option value="rent">rent</option>
+    
+  </select>
+  <br/>
+
+
+  <input type="submit" value="Submit"/>
+    
+  </form>
+  <h3>Predcition : {{prediction}}</h3> 
+    </body>
+  <script>
+   $(document).ready(function() {
+      $("button").click(function(event){
+         var the_id = event.target.id;
+         $.ajax({
+            url: "/recieve_data",
+            type: "get",
+            data: {button_id: the_id},
+           success: function(response) {
+           $("#response").html(response);
+         },
+          error: function(xhr) {
+        //Do Something to handle error
+        }
+       });
+     });
+   });
+  </script>
+</html>
